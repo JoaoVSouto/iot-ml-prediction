@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from iot_dashboard.views import home
+from iot_dashboard.views import home, send_json
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sendjson/', send_json, name='send_json'),
     path('', home, name='home'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
