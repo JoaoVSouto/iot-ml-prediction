@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-(8!62ye^_yschl)03*r$3ubj6xkon48ny#$ri9ly&sq4=ibt@1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'stormy-ridge-14687.herokuapp.com']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'iot-ml-prediction.herokuapp.com']
 
 # Application definition
 
