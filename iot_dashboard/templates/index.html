@@ -31,7 +31,7 @@
         <div class="sidebar-wrapper">
           <ul class="nav">
             <li class="active">
-              <a href="./dashboard.html">
+              <a href="/">
                 <i class="nc-icon nc-bank"></i>
                 <p>Dashboard</p>
               </a>
@@ -137,18 +137,75 @@
         </nav>
         <div class="content">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    Estação Meteorológica de San Diego - Uruguai
+                    Outdoor Temperature (Field 1)
                   </h5>
                   <p class="card-category">
-                    Performance dos últimos 18 minutos (Atualização automática)
+                    Dados das últimas 16 horas
                   </p>
                 </div>
                 <div class="card-body">
-                  <canvas id="canvas"></canvas>
+                  <canvas id="raw-field-1"></canvas>
+                </div>
+                <div class="card-footer text-right">
+                  <small>Atualização automática a cada 5 minutos</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    Temperature (Field 2)
+                  </h5>
+                  <p class="card-category">
+                    Dados das últimas 16 horas
+                  </p>
+                </div>
+                <div class="card-body">
+                  <canvas id="raw-field-2"></canvas>
+                </div>
+                <div class="card-footer text-right">
+                  <small>Atualização automática a cada 5 minutos</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    Air Pressure (Field 3)
+                  </h5>
+                  <p class="card-category">
+                    Dados das últimas 16 horas
+                  </p>
+                </div>
+                <div class="card-body">
+                  <canvas id="raw-field-3"></canvas>
+                </div>
+                <div class="card-footer text-right">
+                  <small>Atualização automática a cada 5 minutos</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    Humidity (Field 4)
+                  </h5>
+                  <p class="card-category">
+                    Dados das últimas 16 horas
+                  </p>
+                </div>
+                <div class="card-body">
+                  <canvas id="raw-field-4"></canvas>
+                </div>
+                <div class="card-footer text-right">
+                  <small>Atualização automática a cada 5 minutos</small>
                 </div>
               </div>
             </div>
@@ -160,7 +217,7 @@
               <div class="credits ml-auto">
                 <span class="copyright">
                   2021, made with <i class="fa fa-heart heart"></i> by João
-                  Vítor Souto dos Santos
+                  Vítor Souto dos Santos and Gabriel Rocha de Souza
                 </span>
               </div>
             </div>
