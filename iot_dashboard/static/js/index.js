@@ -1,6 +1,11 @@
+const GLOBAL_UTILS = {
+  CHANNEL_ID: 196384,
+  FIVE_MINUTES_IN_MS: 1000 * 60 * 5,
+};
+
 function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
   return {
-    type: "line",
+    type: 'line',
     data: {
       labels: [],
       datasets: [
@@ -8,8 +13,8 @@ function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
           label: datasetLabel,
           data: [],
           borderWidth: 6,
-          borderColor: "rgba(77,166,253,0.85)",
-          backgroundColor: "transparent",
+          borderColor: 'rgba(77,166,253,0.85)',
+          backgroundColor: 'transparent',
         },
       ],
     },
@@ -19,11 +24,11 @@ function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
         display: false,
       },
       tooltips: {
-        mode: "index",
+        mode: 'index',
         intersect: false,
       },
       hover: {
-        mode: "nearest",
+        mode: 'nearest',
         intersect: true,
       },
       scales: {
@@ -51,58 +56,56 @@ function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
 }
 
 (() => {
-  const ctx = document.getElementById("raw-field-1").getContext("2d");
+  const ctx = document.getElementById('raw-field-1').getContext('2d');
   window.rawField1 = new Chart(
     ctx,
     createChartConfig({
-      datasetLabel: "Outdoor Temperature",
-      xAxisLabel: "Time",
-      yAxisLabel: "Temperatura [ºC]",
+      datasetLabel: 'Temperatura Externa',
+      xAxisLabel: 'Tempo',
+      yAxisLabel: 'Temperatura [ºC]',
     })
   );
 })();
 
 (() => {
-  const ctx = document.getElementById("raw-field-2").getContext("2d");
+  const ctx = document.getElementById('raw-field-2').getContext('2d');
   window.rawField2 = new Chart(
     ctx,
     createChartConfig({
-      datasetLabel: "Temperature",
-      xAxisLabel: "Time",
-      yAxisLabel: "Temperatura [ºC]",
+      datasetLabel: 'Temperatura',
+      xAxisLabel: 'Tempo',
+      yAxisLabel: 'Temperatura [ºC]',
     })
   );
 })();
 
 (() => {
-  const ctx = document.getElementById("raw-field-3").getContext("2d");
+  const ctx = document.getElementById('raw-field-3').getContext('2d');
   window.rawField3 = new Chart(
     ctx,
     createChartConfig({
-      datasetLabel: "Air Pressure (BPM280)",
-      xAxisLabel: "Time",
-      yAxisLabel: "Pressure [mmHg]",
+      datasetLabel: 'Pressão do Ar (BPM280)',
+      xAxisLabel: 'Tempo',
+      yAxisLabel: 'Pressão [mmHg]',
     })
   );
 })();
 
 (() => {
-  const ctx = document.getElementById("raw-field-4").getContext("2d");
+  const ctx = document.getElementById('raw-field-4').getContext('2d');
   window.rawField4 = new Chart(
     ctx,
     createChartConfig({
-      datasetLabel: "Humidity",
-      xAxisLabel: "Time",
-      yAxisLabel: "Humidity [%]",
+      datasetLabel: 'Humidade',
+      xAxisLabel: 'Tempo',
+      yAxisLabel: 'Humidade [%]',
     })
   );
 })();
 
 async function getLastThingSpeakData({ chartInstance, fieldNumber }) {
-  const CHANNEL_ID = 196384;
-
   const response = await fetch(
-    `https://api.thingspeak.com/channels/${CHANNEL_ID}/fields/${fieldNumber}.json?results=500`
+    `https://api.thingspeak.com/channels/${GLOBAL_UTILS.CHANNEL_ID}/fields/${fieldNumber}.json?results=500`
   );
   const data = await response.json();
 
@@ -113,8 +116,8 @@ async function getLastThingSpeakData({ chartInstance, fieldNumber }) {
     chartInstance.data.datasets[0].data.push(feed[`field${fieldNumber}`]);
 
     const time = new Date(feed.created_at);
-    const hours = time.getHours().toString().padStart(2, "0");
-    const minutes = time.getMinutes().toString().padStart(2, "0");
+    const hours = time.getHours().toString().padStart(2, '0');
+    const minutes = time.getMinutes().toString().padStart(2, '0');
     chartInstance.data.labels.push(`${hours}:${minutes}`);
   });
 
@@ -147,4 +150,4 @@ getRawChartsData();
 
 setInterval(() => {
   getRawChartsData();
-}, 1000 * 60 * 5);
+}, GLOBAL_UTILS.FIVE_MINUTES_IN_MS);
