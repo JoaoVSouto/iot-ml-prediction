@@ -1,6 +1,6 @@
 function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
   return {
-    type: 'line',
+    type: "line",
     data: {
       labels: [],
       datasets: [
@@ -8,8 +8,8 @@ function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
           label: datasetLabel,
           data: [],
           borderWidth: 6,
-          borderColor: 'rgba(77,166,253,0.85)',
-          backgroundColor: 'transparent',
+          borderColor: "rgba(77,166,253,0.85)",
+          backgroundColor: "transparent",
         },
       ],
     },
@@ -19,11 +19,11 @@ function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
         display: false,
       },
       tooltips: {
-        mode: 'index',
+        mode: "index",
         intersect: false,
       },
       hover: {
-        mode: 'nearest',
+        mode: "nearest",
         intersect: true,
       },
       scales: {
@@ -47,43 +47,55 @@ function createChartConfig({ datasetLabel, xAxisLabel, yAxisLabel }) {
         ],
       },
     },
-  }
+  };
 }
 
 (() => {
-  const ctx = document.getElementById('raw-field-1').getContext('2d');
-  window.rawField1 = new Chart(ctx, createChartConfig({
-    datasetLabel: 'Outdoor Temperature',
-    xAxisLabel: 'Time',
-    yAxisLabel: 'Temperatura [ºC]',
-  }));
+  const ctx = document.getElementById("raw-field-1").getContext("2d");
+  window.rawField1 = new Chart(
+    ctx,
+    createChartConfig({
+      datasetLabel: "Outdoor Temperature",
+      xAxisLabel: "Time",
+      yAxisLabel: "Temperatura [ºC]",
+    })
+  );
 })();
 
 (() => {
-  const ctx = document.getElementById('raw-field-2').getContext('2d');
-  window.rawField2 = new Chart(ctx, createChartConfig({
-    datasetLabel: 'Temperature',
-    xAxisLabel: 'Time',
-    yAxisLabel: 'Temperatura [ºC]',
-  }));
+  const ctx = document.getElementById("raw-field-2").getContext("2d");
+  window.rawField2 = new Chart(
+    ctx,
+    createChartConfig({
+      datasetLabel: "Temperature",
+      xAxisLabel: "Time",
+      yAxisLabel: "Temperatura [ºC]",
+    })
+  );
 })();
 
 (() => {
-  const ctx = document.getElementById('raw-field-3').getContext('2d');
-  window.rawField3 = new Chart(ctx, createChartConfig({
-    datasetLabel: 'Air Pressure (BPM280)',
-    xAxisLabel: 'Time',
-    yAxisLabel: 'Pressure [mmHg]',
-  }));
+  const ctx = document.getElementById("raw-field-3").getContext("2d");
+  window.rawField3 = new Chart(
+    ctx,
+    createChartConfig({
+      datasetLabel: "Air Pressure (BPM280)",
+      xAxisLabel: "Time",
+      yAxisLabel: "Pressure [mmHg]",
+    })
+  );
 })();
 
 (() => {
-  const ctx = document.getElementById('raw-field-4').getContext('2d');
-  window.rawField4 = new Chart(ctx, createChartConfig({
-    datasetLabel: 'Humidity',
-    xAxisLabel: 'Time',
-    yAxisLabel: 'Humidity [%]',
-  }));
+  const ctx = document.getElementById("raw-field-4").getContext("2d");
+  window.rawField4 = new Chart(
+    ctx,
+    createChartConfig({
+      datasetLabel: "Humidity",
+      xAxisLabel: "Time",
+      yAxisLabel: "Humidity [%]",
+    })
+  );
 })();
 
 async function getLastThingSpeakData({ chartInstance, fieldNumber }) {
@@ -97,12 +109,12 @@ async function getLastThingSpeakData({ chartInstance, fieldNumber }) {
   chartInstance.data.datasets[0].data = [];
   chartInstance.data.labels = [];
 
-  data.feeds.forEach(feed => {
+  data.feeds.forEach((feed) => {
     chartInstance.data.datasets[0].data.push(feed[`field${fieldNumber}`]);
 
     const time = new Date(feed.created_at);
-    const hours = time.getHours().toString().padStart(2, '0');
-    const minutes = time.getMinutes().toString().padStart(2, '0');
+    const hours = time.getHours().toString().padStart(2, "0");
+    const minutes = time.getMinutes().toString().padStart(2, "0");
     chartInstance.data.labels.push(`${hours}:${minutes}`);
   });
 
@@ -114,17 +126,17 @@ function getRawChartsData() {
     chartInstance: window.rawField1,
     fieldNumber: 1,
   });
-  
+
   getLastThingSpeakData({
     chartInstance: window.rawField2,
     fieldNumber: 2,
   });
-  
+
   getLastThingSpeakData({
     chartInstance: window.rawField3,
     fieldNumber: 3,
   });
-  
+
   getLastThingSpeakData({
     chartInstance: window.rawField4,
     fieldNumber: 4,
