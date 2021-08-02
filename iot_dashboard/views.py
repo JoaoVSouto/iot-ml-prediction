@@ -54,7 +54,7 @@ def predict_field(request, id):
     m = get_prophet_instance()
     m.fit(df)
 
-    future = m.make_future_dataframe(periods=6, freq="H")
+    future = m.make_future_dataframe(periods=1, freq="H")
 
     future["cap"] = upper_bound
     future["floor"] = lower_bound
