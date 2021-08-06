@@ -3,46 +3,40 @@ from django.http import JsonResponse
 from iot_dashboard.prophet import predict_forecast
 from rq import Queue
 from worker import conn
-import threading
 
 q = Queue(connection=conn)
 
-result = {"value": None}
-
-
-def set_interval(func, sec):
-    def func_wrapper():
-        set_interval(func, sec)
-        func()
-
-    t = threading.Timer(sec, func_wrapper)
-    t.start()
-    return t
+result_1 = {"value": None}
+result_2 = {"value": None}
 
 
 def home(request):
     return render(request, "index.html")
 
 
-def print_result():
-    if result["value"]:
-        print(result["value"].result)
-    else:
-        print("nothing")
+def predict_field_1(request):
+    if not result_1["value"]:
+        result_1["value"] = q.enqueue(predict_forecast, 1)
 
-
-def predict_field(request, id):
-    if id != "1" and id != "2":
-        return JsonResponse("Invalid ID parameter", safe=False, status=400)
-
-    if not result["value"]:
-        result["value"] = q.enqueue(predict_forecast, id)
-
-    if not result["value"].result:
+    if not result_1["value"].result:
         return JsonResponse("Still predicting values...", safe=False, status=418)
 
-    predict_values = result["value"].result
+    predict_values = result_1["value"].result
 
-    result["value"] = None
+    result_1["value"] = None
+
+    return JsonResponse(predict_values, safe=False)
+
+
+def predict_field_2(request):
+    if not result_2["value"]:
+        result_2["value"] = q.enqueue(predict_forecast, 2)
+
+    if not result_2["value"].result:
+        return JsonResponse("Still predicting values...", safe=False, status=418)
+
+    predict_values = result_2["value"].result
+
+    result_2["value"] = None
 
     return JsonResponse(predict_values, safe=False)

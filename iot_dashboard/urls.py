@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from iot_dashboard.views import home, predict_field
+from iot_dashboard.views import home, predict_field_1, predict_field_2
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("predict/<id>/", predict_field, name="predict_field"),
+    path("predict/1/", predict_field_1, name="predict_field_1"),
+    path("predict/2/", predict_field_2, name="predict_field_2"),
     path("", home, name="home"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

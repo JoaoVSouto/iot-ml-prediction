@@ -140,12 +140,8 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Temperatura Externa (Field 1)
-                  </h5>
-                  <p class="card-category">
-                    Dados das últimas 16 horas
-                  </p>
+                  <h5 class="card-title">Temperatura Externa (Field 1)</h5>
+                  <p class="card-category">Dados das últimas 16 horas</p>
                 </div>
                 <div class="card-body">
                   <canvas id="raw-field-1"></canvas>
@@ -158,12 +154,8 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Temperatura (Field 2)
-                  </h5>
-                  <p class="card-category">
-                    Dados das últimas 16 horas
-                  </p>
+                  <h5 class="card-title">Temperatura (Field 2)</h5>
+                  <p class="card-category">Dados das últimas 16 horas</p>
                 </div>
                 <div class="card-body">
                   <canvas id="raw-field-2"></canvas>
@@ -176,12 +168,8 @@
             <div class="col-md-6">
               <div class="card mb-md-0">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Pressão do Ar (Field 3)
-                  </h5>
-                  <p class="card-category">
-                    Dados das últimas 16 horas
-                  </p>
+                  <h5 class="card-title">Pressão do Ar (Field 3)</h5>
+                  <p class="card-category">Dados das últimas 16 horas</p>
                 </div>
                 <div class="card-body">
                   <canvas id="raw-field-3"></canvas>
@@ -194,12 +182,8 @@
             <div class="col-md-6">
               <div class="card mb-0">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Humidade (Field 4)
-                  </h5>
-                  <p class="card-category">
-                    Dados das últimas 16 horas
-                  </p>
+                  <h5 class="card-title">Humidade (Field 4)</h5>
+                  <p class="card-category">Dados das últimas 16 horas</p>
                 </div>
                 <div class="card-body">
                   <canvas id="raw-field-4"></canvas>
@@ -245,9 +229,7 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Média da Temperatura (Field 2)
-                  </h5>
+                  <h5 class="card-title">Média da Temperatura (Field 2)</h5>
                 </div>
                 <div class="card-body">
                   <canvas id="average-field-2"></canvas>
@@ -260,9 +242,7 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Variação da Temperatura (Field 2)
-                  </h5>
+                  <h5 class="card-title">Variação da Temperatura (Field 2)</h5>
                 </div>
                 <div class="card-body">
                   <canvas id="variation-field-2"></canvas>
@@ -275,9 +255,7 @@
             <div class="col-md-6">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Média da Pressão do Ar (Field 3)
-                  </h5>
+                  <h5 class="card-title">Média da Pressão do Ar (Field 3)</h5>
                 </div>
                 <div class="card-body">
                   <canvas id="average-field-3"></canvas>
@@ -303,11 +281,9 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="card">
+              <div class="card mb-md-0">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Média da Humidade (Field 4)
-                  </h5>
+                  <h5 class="card-title">Média da Humidade (Field 4)</h5>
                 </div>
                 <div class="card-body">
                   <canvas id="average-field-4"></canvas>
@@ -318,14 +294,59 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="card">
+              <div class="card mb-0">
                 <div class="card-header">
-                  <h5 class="card-title">
-                    Variação da Humidade (Field 4)
-                  </h5>
+                  <h5 class="card-title">Variação da Humidade (Field 4)</h5>
                 </div>
                 <div class="card-body">
                   <canvas id="variation-field-4"></canvas>
+                </div>
+                <div class="card-footer text-right">
+                  <small>Atualização automática a cada 5 minutos</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 my-3">
+              <hr />
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    Previsão da Temperatura Externa (Field 1)
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div id="predict-chart-container-1">
+                    <canvas id="predict-field-1"></canvas>
+                  </div>
+                  <div class="text-center" id="loading1">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Carregando...</span>
+                    </div>
+                    <p>Carregando predições...</p>
+                  </div>
+                </div>
+                <div class="card-footer text-right">
+                  <small>Atualização automática a cada 5 minutos</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Previsão da Temperatura (Field 2)</h5>
+                </div>
+                <div class="card-body">
+                  <div id="predict-chart-container-2">
+                    <canvas id="predict-field-2"></canvas>
+                  </div>
+                  <div class="text-center" id="loading2">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Carregando...</span>
+                    </div>
+                    <p>Carregando predições...</p>
+                  </div>
                 </div>
                 <div class="card-footer text-right">
                   <small>Atualização automática a cada 5 minutos</small>
@@ -339,7 +360,8 @@
             <div class="row">
               <div class="credits ml-auto">
                 <span class="copyright">
-                  2021, made with <i class="fa fa-heart heart" style="color: red"></i> by João
+                  2021, made with
+                  <i class="fa fa-heart heart" style="color: red"></i> by João
                   Vítor Souto dos Santos and Gabriel Rocha de Souza
                 </span>
               </div>
@@ -359,5 +381,6 @@
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/average.js' %}"></script>
     <script src="{% static 'js/variation.js' %}"></script>
+    <script src="{% static 'js/prediction.js' %}"></script>
   </body>
 </html>
